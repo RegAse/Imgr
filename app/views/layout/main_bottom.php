@@ -6,3 +6,11 @@
 	</script>
 </body>
 </html>
+
+<?php/* include '../app/views/layout/main_top.php' ?>
+	
+	<div>
+		
+	</div>
+
+<?php include '../app/views/layout/main_bottom.php'/* ?>

@@ -4,7 +4,13 @@ class View {
 	
 	public static function make($view)
 	{
-		include '../app/views/'.$view.'.php';
+		$loader = new Twig_Loader_Filesystem('../app/views');
+		$twig = new Twig_Environment($loader, array());
+
+		//Render the view to the browser
+		echo $twig->render($view.'.php', array('name' => 'Fabien'));
+
+		//include '../app/views/'.$view.'.php';
 	}
 
 	public static function extend($view)

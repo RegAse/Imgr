@@ -20,9 +20,9 @@
 		</ul>
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li class="<?php echo ($currentPage == "index.php" ? 'active' : '') ?>"><a href="index.php">Home</a></li>
-			<li class="<?php echo ($currentPage == "categories.php" ? 'active' : '') ?>"><a href="categories.php">Categories</a></li>
-			<li class="<?php echo ($currentPage == "newimage.php" ? 'active' : '') ?>"><a href="newimage.php">New Image</a></li>
+			<li class="{{ (currentPage == "index.php" ? 'active' : '') }}"><a href="index.php">Home</a></li>
+			<li class="{{ (currentPage == "categories.php" ? 'active' : '') }}"><a href="categories.php">Categories</a></li>
+			<li class="{{ (currentPage == "images.php" ? 'active' : '') }}"><a href="newimage.php">New Image</a></li>
 		</ul>
 	</section>
 </nav>

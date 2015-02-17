@@ -1,7 +1,5 @@
-<?php include '../app/views/layout/main_top.php' ?>
-	
-	<div>
-		HTML for the images site
-	</div>
+{% extends "layout/main.php" %}
 
-<?php include '../app/views/layout/main_bottom.php' ?>
+{% block content %}
+	This is the content of images/home.php hey
+{% endblock %}
