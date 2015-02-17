@@ -6,4 +6,9 @@ class HomeController extends Controller{
 	{
 		return View::make('home');
 	}
+
+	public function home_post()
+	{
+		return 'hh';
+	}
 }

@@ -48,14 +48,17 @@ class App
 
 	public function FindRoute($url)
 	{
+		$found = false;
 		foreach (Route::$routes as $key)
 		{
-			if ($key["url"] == $url or $url == "")
+			if ($key['url'] == $url and $key['method'] == $_SERVER['REQUEST_METHOD'] or $url == "")
 			{
 				/* 
 					Include the Controller and create a new controller
 					then call the function
 				*/
+
+				$found = true;
 
 				require_once '../app/controllers/'. $key["controller"] .'.php';
 
@@ -72,6 +75,10 @@ class App
 				}
 				break;
 			}
+		}
+		if (!$found)
+		{
+			echo "404";
 		}
 	}
 }
