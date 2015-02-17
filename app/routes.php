@@ -11,16 +11,16 @@ Route::get('/','home','HomeController@home');
 
 Route::get('/images','images','ImageController@home');
 
-Route::post('/','pos','HomeController@home_post');
-
 /*
 	Account Routes
 */
 
-Route::get('/register','register','AccountController@register');
+Route::get('/register', 'register', 'AccountController@register');
 
-Route::post('/register','register-post','AccountController@register_post');
+Route::post('/register', 'register-post', 'AccountController@register_post');
 
-Route::get('/login','login','AccountController@login');
+Route::get('/login', 'login', 'AccountController@login');
 
-Route::post('/login','login-post','AccountController@login_post');
+Route::post('/login', 'login-post', 'AccountController@login_post');
+
+Route::get('/logout', 'logout', 'AccountController@logout');
