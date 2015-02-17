@@ -23,14 +23,14 @@ class App
 
 		// $this->controller = new $this->controller;
 
-		if (isset($url[1]))
-		{
-			if (method_exists($this->controller, $url[1]))
-			{
-				echo "Works";
-				//var_dump(Route::$routes);
-			}
-		}
+		// if (isset($url[1]))
+		// {
+		// 	if (method_exists($this->controller, $url[1]))
+		// 	{
+		// 		echo "Works";
+		// 		//var_dump(Route::$routes);
+		// 	}
+		// }
 	}
 
 	public function parseUrl()
@@ -50,7 +50,7 @@ class App
 	{
 		foreach (Route::$routes as $key)
 		{
-			if ($key["url"] == $url)
+			if ($key["url"] == $url or $url == "")
 			{
 				/* 
 					Include the Controller and create a new controller
@@ -63,12 +63,14 @@ class App
 
 				if (method_exists($this->controller, $key["function"]))
 				{
-					echo "do this";
+					// Call the function
+					echo $this->controller->$key["function"]();
 				}
 				else
 				{
 					echo "404";
 				}
+				break;
 			}
 		}
 	}

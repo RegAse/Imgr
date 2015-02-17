@@ -1,4 +1,5 @@
 <?php
+
 class Route {
 
 	public static $routes = array();

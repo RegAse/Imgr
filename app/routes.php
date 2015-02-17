@@ -9,6 +9,4 @@
 
 Route::get('/','home','HomeController@home');
 
-Route::get('/images','images','HomeController@home');
-
-Route::get('/albums','albums','HomeController@home');
+Route::get('/images','images','ImageController@home');
