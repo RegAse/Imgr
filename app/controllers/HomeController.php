@@ -4,6 +4,7 @@ class HomeController extends Controller{
 
 	public function home()
 	{
+		//$user = new User();
 		return View::make('home');
 	}
 

@@ -2,8 +2,9 @@
 	<div class="row">
 		<div class="large-12 column">
 			Home
-			<a href="<?php echo URL::route('register'); ?>">ss</a>
+			<?php echo User::all(); ?>
 
+			<a href="<?php echo URL::route('register'); ?>">ss</a>
 		</div>
 	</div>
 <?php $__env->stopSection(); ?>

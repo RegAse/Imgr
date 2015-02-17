@@ -19,7 +19,7 @@
 						</label>
 					</div>
 				</div>
-				<button class="small" type="submit">Join Imgr</button>
+				<button class="small" type="submit">Sign in</button>
 			</form>
 		</div>
 	</div>
