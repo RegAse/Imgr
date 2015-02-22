@@ -1,8 +1,11 @@
 <?php $__env->startSection('content'); ?>
 	<div class="row">
 		<div class="large-12 column">
-			Landing page for new users only
-			<a href="<?php echo URL::route('register'); ?>">Register</a>
+			Dashboard
+			<?php if(Auth::check()): ?>
+				<?php echo Auth::user(); ?>
+
+			<?php endif; ?>
 		</div>
 	</div>
 <?php $__env->stopSection(); ?>

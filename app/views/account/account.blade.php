@@ -3,8 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class="large-12 column">
-			Landing page for new users only
-			<a href="{{URL::route('register')}}">Register</a>
+			<h3>Change account</h3>
 		</div>
 	</div>
 @stop

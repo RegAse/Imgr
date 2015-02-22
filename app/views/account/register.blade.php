@@ -7,15 +7,19 @@
 			<form class="large-6 column" action="{{URL::route('register-post')}}" method="POST">
 				<div class="row">
 					<div class="large-12 column">
-						<label>Username
-							<input type="text" name="username" placeholder="Username" />
+						<label>
+							Username 
+							{{(isset($errors["username"]) ? $errors["username"] : '')}}
+							<input type="text" name="username" value="{{(isset($inputs['username']) ? $inputs['username'] : '')}}" placeholder="Username" />
 						</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 column">
-						<label>Password
-							<input type="password" name="password" placeholder="Password" />
+						<label>
+							Password
+							{{(isset($errors["password"]) ? $errors["password"] : '')}}
+							<input type="password" name="password" placeholder="Password" autocomplete="off" />
 						</label>
 					</div>
 				</div>
@@ -28,8 +32,10 @@
 				</div>
 				<div class="row">
 					<div class="large-12 column">
-						<label>Email
-							<input type="text" name="email" placeholder="Email" />
+						<label>
+							Email
+							{{(isset($errors["email"]) ? $errors["email"] : '')}}
+							<input type="text" name="email" value="{{(isset($inputs['email']) ? $inputs['email'] : '')}}" placeholder="Email" />
 						</label>
 					</div>
 				</div>

@@ -5,15 +5,21 @@
 			<form class="large-6 column" action="<?php echo URL::route('register-post'); ?>" method="POST">
 				<div class="row">
 					<div class="large-12 column">
-						<label>Username
-							<input type="text" name="username" placeholder="Username" />
+						<label>
+							Username 
+							<?php echo (isset($errors["username"]) ? $errors["username"] : ''); ?>
+
+							<input type="text" name="username" value="<?php echo (isset($inputs['username']) ? $inputs['username'] : ''); ?>" placeholder="Username" />
 						</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 column">
-						<label>Password
-							<input type="password" name="password" placeholder="Password" />
+						<label>
+							Password
+							<?php echo (isset($errors["password"]) ? $errors["password"] : ''); ?>
+
+							<input type="password" name="password" placeholder="Password" autocomplete="off" />
 						</label>
 					</div>
 				</div>
@@ -26,8 +32,11 @@
 				</div>
 				<div class="row">
 					<div class="large-12 column">
-						<label>Email
-							<input type="text" name="email" placeholder="Email" />
+						<label>
+							Email
+							<?php echo (isset($errors["email"]) ? $errors["email"] : ''); ?>
+
+							<input type="text" name="email" value="<?php echo (isset($inputs['email']) ? $inputs['email'] : ''); ?>" placeholder="Email" />
 						</label>
 					</div>
 				</div>

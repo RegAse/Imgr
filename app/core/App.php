@@ -13,24 +13,6 @@ class App
 	{
 		$url = $this->parseUrl();
 		$this->FindRoute($url);
-		// if (file_exists('../app/controllers/' . $url[0] . '.php'))
-		// {
-		// 	$this->controller = $url[0];
-		// 	unset($url[0]);
-		// }
-
-		// require_once '../app/controllers/'. $this->controller .'.php';
-
-		// $this->controller = new $this->controller;
-
-		// if (isset($url[1]))
-		// {
-		// 	if (method_exists($this->controller, $url[1]))
-		// 	{
-		// 		echo "Works";
-		// 		//var_dump(Route::$routes);
-		// 	}
-		// }
 	}
 
 	public function parseUrl()
@@ -60,8 +42,8 @@ class App
 
 				$found = true;
 
+				// Fetch the controllers
 				require_once '../app/controllers/'. $key["controller"] .'.php';
-
 				$this->controller = new $key["controller"];
 
 				if (method_exists($this->controller, $key["function"]))
@@ -71,14 +53,51 @@ class App
 				}
 				else
 				{
-					echo "404";
+					echo View::make('errors.404');
+					exit();
 				}
 				break;
+			}
+			else if (preg_match_all("/{(.*?)}/", $key['url'], $para))
+			{
+				/*
+					This is for routes with parameters
+					Ex: Route::get('/profile/{username}','profile','UserController@profile');
+				*/
+
+				// Fetch the controllers
+				require_once '../app/controllers/'. $key["controller"] .'.php';
+
+				$this->controller = new $key["controller"];
+
+				if (method_exists($this->controller, $key["function"]))
+				{
+					$routeurl = explode('/', $key['url']);
+					$requestedurl = explode('/', $url);
+					if (count($routeurl) != count($requestedurl))
+					{
+						echo View::make('errors.404');
+						exit();
+					}
+
+					for ($i=0; $i < count($routeurl); $i++)
+					{ 
+						if (preg_match_all("/{(.*?)}/", $routeurl[$i], $para1))
+						{
+							$param[$routeurl[$i]] = $requestedurl[$i];
+						}
+					}
+
+					// Call the function
+					echo call_user_func_array(array($this->controller, $key["function"]), $param);
+					$found = true;
+				}
 			}
 		}
 		if (!$found)
 		{
-			echo "404";
+			echo View::make('errors.404');
+			exit();
 		}
 	}
 }

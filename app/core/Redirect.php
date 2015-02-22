@@ -11,9 +11,9 @@ class Redirect {
 				/* 
 					Return the url *Move this to a reusable function*
 				*/
-
+				
 				header('Location: '.$key['url']);
-				die();
+				exit();
 			}
 		}
 	}

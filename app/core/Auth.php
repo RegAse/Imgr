@@ -23,6 +23,7 @@ class Auth
 		$_SESSION["id"] = $id;
 		if (isset($_SESSION["id"]))
 		{
+			require '../app/routes.php';
 			return true;
 		}
 		return false;
@@ -34,9 +35,9 @@ class Auth
 		{
 			session_start();
 		}
-
+		session_unset();
 		session_destroy();
-		return Redirect::route('home');
+		require '../app/routes.php';
 	}
 
 	public static function user()
