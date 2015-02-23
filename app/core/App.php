@@ -74,23 +74,29 @@ class App
 				{
 					$routeurl = explode('/', $key['url']);
 					$requestedurl = explode('/', $url);
-					if (count($routeurl) != count($requestedurl))
+					if (count($routeurl) == count($requestedurl))
 					{
-						echo View::make('errors.404');
-						exit();
-					}
-
-					for ($i=0; $i < count($routeurl); $i++)
-					{ 
-						if (preg_match_all("/{(.*?)}/", $routeurl[$i], $para1))
+						$res = true;
+						for ($i=0; $i < count($routeurl); $i++)
+						{ 
+							if (preg_match_all("/{(.*?)}/", $routeurl[$i], $para1))
+							{
+								$param[$routeurl[$i]] = $requestedurl[$i];
+							}
+							else if($routeurl[$i] != $requestedurl[$i])
+							{
+								$res = false;
+								break;
+							}
+						}
+						if ($res)
 						{
-							$param[$routeurl[$i]] = $requestedurl[$i];
+							// Call the function
+							echo call_user_func_array(array($this->controller, $key["function"]), $param);
+							$found = true;
+							exit();
 						}
 					}
-
-					// Call the function
-					echo call_user_func_array(array($this->controller, $key["function"]), $param);
-					$found = true;
 				}
 			}
 		}

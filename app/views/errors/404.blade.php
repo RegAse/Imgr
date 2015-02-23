@@ -1,9 +1,9 @@
 @extends('layout.main')
 
 @section('content')
-	<div class="large-12 column">
-		<div class="row">
-			<h1>404</h1>
-		</div>
+	<div class="s404 center">
+		404
+		<p class="s404-under">It's not you it´s the internet's faults</p>
+		<a class="s404-link" href="{{URL::route('home')}}">Go to home</a>
 	</div>
 @stop

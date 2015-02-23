@@ -1,11 +1,17 @@
 <?php $__env->startSection('content'); ?>
 	<div class="row">
 		<div class="large-12 column">
-			Dashboard
-			<?php if(Auth::check()): ?>
-				<?php echo Auth::user(); ?>
-
-			<?php endif; ?>
+			<h3>My Dashboard</h3>
+			<p>Welcome to your dashboard <?php echo Auth::user()->admin ? 'Administrator' : 'Regular'; ?></p>
+			<h4>My recently posted images</h4>
+			<?php foreach(Auth::user()->images()->orderBy('created_at','desc')->get() as $image): ?>
+				<a href="<?php echo URL::route('image',array($image->id)); ?>">
+					<div class="large-3 column image-tile">
+						<img src="<?php echo Assets::asset($image->path); ?>">
+						<p><?php echo $image->name; ?></p>
+					</div>
+				</a>
+			<?php endforeach; ?>
 		</div>
 	</div>
 <?php $__env->stopSection(); ?>

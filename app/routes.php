@@ -11,7 +11,9 @@ if (!Auth::check())
 {
 	/* This is only for users not logged in */
 
-	Route::get('/register','register','AccountController@register');
+	Route::get('/','home','HomeController@home');
+	
+	Route::get('/register', 'register', 'AccountController@register');
 
 	Route::post('/register','register-post','AccountController@register_post');
 
@@ -23,7 +25,13 @@ else
 {
 	/* This is only for logged in users */
 
-	Route::get('/','dashboard','UserController@dashboard');
+	Route::get('/','home','UserController@dashboard');
+
+	// Get the image upload site
+	Route::get('/image/upload','image-upload','ImageController@image_upload');
+
+	// Upload the image
+	Route::post('/image/upload','image-upload-post','ImageController@image_upload_post');
 
 	Route::get('/account','account','AccountController@account');
 
@@ -32,8 +40,8 @@ else
 
 /* And these are for everyone */
 
-Route::get('/','home','HomeController@home');
-
 Route::get('/images','images','ImageController@home');
+
+Route::get('/image/{id}','image','ImageController@image');
 
 Route::get('/profile/{username}','profile','UserController@profile');

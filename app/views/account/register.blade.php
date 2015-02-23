@@ -7,20 +7,24 @@
 			<form class="large-6 column" action="{{URL::route('register-post')}}" method="POST">
 				<div class="row">
 					<div class="large-12 column">
-						<label>
-							Username 
-							{{(isset($errors["username"]) ? $errors["username"] : '')}}
-							<input type="text" name="username" value="{{(isset($inputs['username']) ? $inputs['username'] : '')}}" placeholder="Username" />
+						<label class="{{isset($errors['username']) ? error : ''}}">
+							Username
+							<input class="{{isset($errors['username']) ? error : ''}}" 
+								   type="text" name="username" value="{{(isset($inputs['username']) ? $inputs['username'] : '')}}" 
+								   placeholder="Username" />
 						</label>
+						{{(isset($errors["username"]) ? '<span class="error">'.$errors["username"].'</span>' : '')}}
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 column">
-						<label>
+						<label class="{{isset($errors['password']) ? error : ''}}">
 							Password
-							{{(isset($errors["password"]) ? $errors["password"] : '')}}
-							<input type="password" name="password" placeholder="Password" autocomplete="off" />
+							<input class="{{isset($errors['password']) ? error : ''}}" 
+								   type="password" name="password" value="{{(isset($inputs['password']) ? $inputs['password'] : '')}}" 
+								   placeholder="Password" />
 						</label>
+						{{(isset($errors["password"]) ? '<span class="error">'.$errors["password"].'</span>' : '')}}
 					</div>
 				</div>
 				<div class="row">
@@ -34,9 +38,11 @@
 					<div class="large-12 column">
 						<label>
 							Email
-							{{(isset($errors["email"]) ? $errors["email"] : '')}}
-							<input type="text" name="email" value="{{(isset($inputs['email']) ? $inputs['email'] : '')}}" placeholder="Email" />
+							<input class="{{isset($errors['email']) ? error : ''}}" 
+								   type="text" name="email" value="{{(isset($inputs['email']) ? $inputs['email'] : '')}}" 
+								   placeholder="Email" />
 						</label>
+						{{(isset($errors["email"]) ? '<span class="error">'.$errors["email"].'</span>' : '')}}
 					</div>
 				</div>
 				<button class="small" type="submit">Join Imgr</button>

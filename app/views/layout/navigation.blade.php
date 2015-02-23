@@ -26,8 +26,9 @@
 		</ul>
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li class="{{ (currentPage == "categories.php" ? 'active' : '') }}"><a href="categories.php">Upload images</a></li>
-			<li class="{{ (currentPage == "images.php" ? 'active' : '') }}"><a href="newimage.php">New Image</a></li>
+			@if(Auth::check())
+				<li><a href="{{URL::route('image-upload')}}">Upload Image</a></li>
+			@endif
 		</ul>
 	</section>
 </nav>

@@ -5,22 +5,26 @@
 			<form class="large-6 column" action="<?php echo URL::route('register-post'); ?>" method="POST">
 				<div class="row">
 					<div class="large-12 column">
-						<label>
-							Username 
-							<?php echo (isset($errors["username"]) ? $errors["username"] : ''); ?>
-
-							<input type="text" name="username" value="<?php echo (isset($inputs['username']) ? $inputs['username'] : ''); ?>" placeholder="Username" />
+						<label class="<?php echo isset($errors['username']) ? error : ''; ?>">
+							Username
+							<input class="<?php echo isset($errors['username']) ? error : ''; ?>" 
+								   type="text" name="username" value="<?php echo (isset($inputs['username']) ? $inputs['username'] : ''); ?>" 
+								   placeholder="Username" />
 						</label>
+						<?php echo (isset($errors["username"]) ? '<span class="error">'.$errors["username"].'</span>' : ''); ?>
+
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 column">
-						<label>
+						<label class="<?php echo isset($errors['password']) ? error : ''; ?>">
 							Password
-							<?php echo (isset($errors["password"]) ? $errors["password"] : ''); ?>
-
-							<input type="password" name="password" placeholder="Password" autocomplete="off" />
+							<input class="<?php echo isset($errors['password']) ? error : ''; ?>" 
+								   type="password" name="password" value="<?php echo (isset($inputs['password']) ? $inputs['password'] : ''); ?>" 
+								   placeholder="Password" />
 						</label>
+						<?php echo (isset($errors["password"]) ? '<span class="error">'.$errors["password"].'</span>' : ''); ?>
+
 					</div>
 				</div>
 				<div class="row">
@@ -34,10 +38,12 @@
 					<div class="large-12 column">
 						<label>
 							Email
-							<?php echo (isset($errors["email"]) ? $errors["email"] : ''); ?>
-
-							<input type="text" name="email" value="<?php echo (isset($inputs['email']) ? $inputs['email'] : ''); ?>" placeholder="Email" />
+							<input class="<?php echo isset($errors['email']) ? error : ''; ?>" 
+								   type="text" name="email" value="<?php echo (isset($inputs['email']) ? $inputs['email'] : ''); ?>" 
+								   placeholder="Email" />
 						</label>
+						<?php echo (isset($errors["email"]) ? '<span class="error">'.$errors["email"].'</span>' : ''); ?>
+
 					</div>
 				</div>
 				<button class="small" type="submit">Join Imgr</button>

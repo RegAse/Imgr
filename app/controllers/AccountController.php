@@ -10,19 +10,43 @@ class AccountController extends Controller{
 	public function register_post()
 	{
 		$username = $_POST["username"];
-		$password = md5($_POST["password"]);
-		$repassword = md5($_POST["repassword"]);
+		$password = $_POST["password"];
+		$repassword = $_POST["repassword"];
 		$email = $_POST["email"];
 
 		if (strlen($username) < 4)
 		{
 			$errors["username"] = "Username is to short";
 		}
+		if (User::where('username',$username)->first())
+		{
+			$errors["username"] = "Username already taken";
+		}
+		/* Password Validation */
+
 		if ($password != $repassword)
 		{
 			$errors["password"] = "Password must be same as password again";
 		}
+		if (strlen($password) < 8) {
+        	$errors["password"] = "Password too short!";
+    	}
 
+	    if (!preg_match("#[0-9]+#", $password))
+	    {
+	        $errors["password"] = "Password must include at least one number!";
+	    }
+
+	    if (!preg_match("#[a-zA-Z]+#", $password))
+	    {
+	        $errors["password"] = "Password must include at least one letter!";
+	    }    
+
+	    /* Email Validation */
+
+	    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    		$errors["email"] = "Email must be a valid email";
+		}
 		if (isset($errors))
 		{
 			// Return the view with the errors and the input
@@ -34,7 +58,7 @@ class AccountController extends Controller{
 
 		$user = User::create(array(
 			'username' => $username,
-			'password' => $password,
+			'password' => md5($password),
 			'email' => $email
 		));
 
@@ -58,7 +82,7 @@ class AccountController extends Controller{
 		if ($user)
 		{
 			Auth::login($user->id);
-			return Redirect::route('dashboard');
+			return Redirect::route('home');
 		}
 	}
 

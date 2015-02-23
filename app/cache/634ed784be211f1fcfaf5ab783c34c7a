@@ -1,18 +1,26 @@
 <?php $__env->startSection('content'); ?>
-	<div class="large-12 column">
-		Profile
-		<?php echo $user->username; ?>
+	<div class="row">
+		<div class="large-12 column">
+			<h2><?php echo $user->username; ?></h2>
+			<?php if(Auth::check()): ?>
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			<?php endif; ?>
+			<h4>Images posted by <?php echo $user->username; ?></h4>
+			<?php foreach(Auth::user()->images as $image): ?>
+				<div class="large-2 column">
+					<img src="<?php echo Assets::asset($image->path); ?>">
+					<?php echo $image->name; ?>
 
-		<?php if(Auth::check()): ?>
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</p>
-		<?php endif; ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
 	</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

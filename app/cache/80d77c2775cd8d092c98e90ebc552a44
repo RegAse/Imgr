@@ -1,0 +1,15 @@
+<?php $__env->startSection('content'); ?>
+	<div class="large-12 column">
+		<div class="row">
+			<div class="large-3 column">
+				<img src="<?php echo Assets::asset($image->path); ?>">
+			</div>
+			<div class="large-9 column">
+				<h3><?php echo $image->name; ?></h3>
+				<p><?php echo $image->text; ?></p>
+				<p>Added on <?php echo $image->created_at; ?></p>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

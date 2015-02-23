@@ -1,0 +1,54 @@
+<?php $__env->startSection('content'); ?>
+	<div class="row">
+		<div class="large-12 column">
+			<?php if(isset($_SESSION["success"])): ?>
+				<?php echo $_SESSION["success"]; ?>
+
+				<?php unset($_SESSION["success"]); ?>
+			<?php endif; ?>
+			<h3>Upload Image</h3>
+			<form class="large-6 column" method="POST" action="<?php echo URL::route('image-upload-post'); ?>" enctype="multipart/form-data">
+				<div class="row">
+					<div class="large-12 column">
+						<label class="<?php echo isset($errors['file']) ? error : ''; ?>">
+							Image
+							<input class="<?php echo isset($errors['file']) ? error : ''; ?>" 
+								   type="file" name="file" value="<?php echo (isset($inputs['file']) ? $inputs['file'] : ''); ?>" />
+						</label>
+						<?php echo (isset($errors["file"]) ? '<span class="error">'.$errors["file"].'</span>' : ''); ?>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 column">
+						<label class="<?php echo isset($errors['name']) ? error : ''; ?>">
+							Name
+							<input class="<?php echo isset($errors['name']) ? error : ''; ?>" 
+								   type="text" name="name" value="<?php echo (isset($inputs['name']) ? $inputs['name'] : ''); ?>" />
+						</label>
+						<?php echo (isset($errors["name"]) ? '<span class="error">'.$errors["name"].'</span>' : ''); ?>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-12 column">
+						<label class="<?php echo isset($errors['text']) ? error : ''; ?>">
+							Image Text
+							<input class="<?php echo isset($errors['text']) ? error : ''; ?>" 
+								   type="text" name="text" value="<?php echo (isset($inputs['text']) ? $inputs['text'] : ''); ?>" />
+						</label>
+						<?php echo (isset($errors["text"]) ? '<span class="error">'.$errors["text"].'</span>' : ''); ?>
+
+					</div>
+				</div>
+				<select name="category">
+					<?php foreach(Category::all() as $category): ?>
+						<option value=""><?php echo $category->name; ?></option>
+					<?php endforeach; ?>
+				</select>
+				<button class="small">Upload</button>
+			</form>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

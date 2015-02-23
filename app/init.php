@@ -13,6 +13,7 @@ require_once 'core/View.php';
 require_once 'core/Url.php';
 require_once 'core/Auth.php';
 require_once 'core/Redirect.php';
+require_once 'core/File.php';
 require_once 'routes.php';
 
 // 3rd Party packages
@@ -47,7 +48,10 @@ $capsule->setAsGlobal();
 
 $capsule->bootEloquent();
 
-function Asset()
+/* Autoloader not working properly 
+	So i require everything from here
+*/
+foreach (glob('../app/models/*.php') as $filename)
 {
-	echo "asset";
+    require $filename;
 }
