@@ -1,3 +1,29 @@
 .style{
 	background-color: blue;
 }
+.center{
+	text-align: center;
+}
+.s404{
+	padding: 4%;
+	color: gray;
+	font-size: 120px;
+	background-color: #F0F0F0;
+}
+.s404-under{
+	color: gray;
+	font-size: 22px;
+	background-color: #F0F0F0;
+}
+.s404-link{
+	color: #CB5C28;
+	font-size: 22px;
+}
+.s404-link:hover{
+	color: #CB9B28;
+	font-size: 24px;
+}
+.image-tile{
+	background-color: #F3F3F3;
+	padding: 10px;
+}
