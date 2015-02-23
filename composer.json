@@ -1,5 +1,11 @@
 {
     "require": {
-        "twig/twig": "~1.18"
+        "philo/laravel-blade": "~2.1",
+        "illuminate/database": "4.2.*"
+    },
+    "autoload": {
+    	"classmap": [
+    		"app/models"
+    	]
     }
 }
